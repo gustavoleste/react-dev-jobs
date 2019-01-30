@@ -9,7 +9,7 @@ const footer = () => (
                     <Content>
                               <p>Feito com <FontAwesomeIcon icon={faHeart} color='#ff0000' /> por Gustavo Leste</p>
                               <Logos>
-                                        <FontAwesomeIcon icon={faGithub} color='#fff' size='lg'/> <FontAwesomeIcon icon={faLinkedin} color='#fff' size='lg'/> 
+                                        <a href='https://github.com/gustavoleste' target='_blank' rel='external noopener noreferrer'><FontAwesomeIcon icon={faGithub} color='#fff' size='lg'/></a> <a href='https://www.linkedin.com/in/gustavoleste/' target='_blank' rel='external noopener noreferrer'><FontAwesomeIcon icon={faLinkedin} color='#fff' size='lg'/></a> 
                               </Logos>
                     </Content>
           </Container>

@@ -70,6 +70,7 @@ export default class Jobs extends Component{
           }
 
           render(){
+                    console.log(this.props)
                     return(
                               <Container>                              
                                         <JobList jobs={this.state.jobs}/>                                                                    

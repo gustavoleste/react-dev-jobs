@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTimes, faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom'
 
 const nav = props => (
           <Container show={props.show}>
@@ -12,12 +13,12 @@ const nav = props => (
                               <LinksJobs>
                                         <h2>Vagas</h2>
                                         <ul>
-                                                  <li><a href='/'>Front-End</a></li>
-                                                  <li><a href='/'>Front-End / React</a></li>
-                                                  <li><a href='/'>Back-End</a></li>
+                                                  <li onClick={props.close}><Link to='/vagas/frontendbr'>Front-End</Link></li>
+                                                  <li onClick={props.close}><Link to='/vagas/react-brasil'>React</Link></li>
+                                                  <li onClick={props.close}><Link to='/vagas/backend-br'>Back-End</Link></li>
                                         </ul>
                               </LinksJobs>                              
-                              <h2><a href='/'>GitHub <FontAwesomeIcon icon={faExternalLinkAlt} size='xs'/></a></h2>                              
+                              <h2><a href='https://github.com/' target='_blank' rel='external noopener noreferrer'>GitHub <FontAwesomeIcon icon={faExternalLinkAlt} size='xs'/></a></h2>                              
                     </LinksMenu>
           </Container>
 )
@@ -41,7 +42,7 @@ const Container = styled.nav`
                     display: flex;
                     width: 400px;
                     height: 100%;
-                    background: #262626;
+                    background: #000;
                     border-left: 0;
                     box-shadow: 0 0 0;
                     z-index: 0;
@@ -122,15 +123,15 @@ const LinksJobs = styled.div`
 
                     ul{
                               border: 0;
-                              background: #fff;
+                              background: #000;
                               display: none;
-                              border-radius: 5px;
+                              border-radius: 0 0 5px 5px;
                               z-index: 1;
                     }
 
                     a{                              
                               padding: 1rem;
-                              color: #262626;
+                              color: #fff;
                     }
 
                     a:hover{

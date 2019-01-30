@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Nav from './NavBar'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars} from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom'
 
 class Header extends Component{
          
@@ -23,7 +24,7 @@ class Header extends Component{
                               <Container>
                                         <Content>
                                                   <Title>
-                                                            <h1>Dev Jobs</h1>
+                                                            <h1><Link to='/'>DevJobs</Link></h1>
                                                             <button onClick={this.showAndCloseSideBar}><FontAwesomeIcon icon={faBars} color='#fff' size='2x'/></button>
                                                   </Title>
                                                   <Nav show={this.state.show} close={this.showAndCloseSideBar}/>
@@ -36,7 +37,7 @@ class Header extends Component{
 export default Header
 
 const Container = styled.header`
-          background: #262626;
+          background: #000;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -57,11 +58,18 @@ const Title = styled.div`
           display: flex;
           align-items: center;
           justify-content: space-between;
-          color: #fff;
           padding: 1rem;
 
+          a{
+                    color: #fff;
+                    padding: 1rem;
+                    font-family: sans-serif;
+                    text-decoration: none;
+          }
+          
+
           button{
-                    background: #262626;
+                    background: #000;
                     outline: none;
           }
 
