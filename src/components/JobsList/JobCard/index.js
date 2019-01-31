@@ -22,7 +22,7 @@ export default class JobCard extends Component{
                     return(
                               <Container>
                                         <Title>{title}</Title>                                        
-                                        <Labels>Labels: {labels.map(label => <Label color={label.color}>{label.name}</Label>)}</Labels>
+                                        <Labels>Labels:<span/>{labels.map(label => <Label color={label.color} key={label.node_id}>{label.name}</Label>)}</Labels>
                                         <User>Criado por: {user.login}</User>
                                         <MaisInfo show={this.state.show} onClick={this.showHandle}><FontAwesomeIcon icon={faChevronCircleDown} size='2x'/></MaisInfo>
                                         <Description show={this.state.show}>{body}</Description>
@@ -63,8 +63,14 @@ const User = styled.p`
 const Labels = styled.ul`
           display:flex;
           align-items: center;
+          flex-wrap: wrap;
           font-size: 1rem;
-          margin-bottom: 0.5rem;
+          margin: 0.5rem 0;
+          
+          span{
+                    margin: 0.2rem;
+          }
+          
 
           @media (min-width: 700px){
                     font-size: 1.2rem;
@@ -78,6 +84,11 @@ const Label = styled.li`
           font-size: 0.8rem;
           font-family: sans-serif;
           font-weight: 500;
+          margin: 0.2rem 0 0 0.2rem;
+
+          @media (min-width: 700px){
+                    margin: 0.5rem 0 0 0.5rem;
+          }
 `
 const Description = styled(MarkDown)`
           display: ${isShow => isShow.show ? `block` : `none`};
@@ -99,6 +110,7 @@ const MaisInfo = styled.button`
           margin-top: 0.5rem;
           border-radius: 100px;
           background: #fff;
+          cursor: pointer;
 `
 const MenosInfo = styled(MaisInfo)`
           display: ${isShow => isShow.show ? `block` : `none`};

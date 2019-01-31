@@ -9,7 +9,7 @@ const footer = () => (
                     <Content>
                               <p>Feito com <FontAwesomeIcon icon={faHeart} color='#ff0000' /> por Gustavo Leste</p>
                               <Logos>
-                                        <a href='https://github.com/gustavoleste' target='_blank' rel='external noopener noreferrer'><FontAwesomeIcon icon={faGithub} color='#fff' size='lg'/></a> <a href='https://www.linkedin.com/in/gustavoleste/' target='_blank' rel='external noopener noreferrer'><FontAwesomeIcon icon={faLinkedin} color='#fff' size='lg'/></a> 
+                                        <a href='https://github.com/gustavoleste' target='_blank' rel='external noopener noreferrer'><FontAwesomeIcon icon={faGithub} color='#000' size='lg'/></a> <a href='https://www.linkedin.com/in/gustavoleste/' target='_blank' rel='external noopener noreferrer'><FontAwesomeIcon icon={faLinkedin} color='#006699' size='lg'/></a> 
                               </Logos>
                     </Content>
           </Container>
@@ -18,14 +18,19 @@ const footer = () => (
 export default footer
 
 const Container = styled.footer`
-          background: #000;
+          /*background: #000;*/
+          border-top: 1px solid #cccccc;
+          width: 90vw;
+          max-width: 1024px;
+          margin: auto;
 `
 const Content = styled.div`
-          color: #fff;
+          /*color: #fff;*/
           padding: 1rem 0;
           display: flex;
           flex-direction: column;
           align-items: center;
+          margin-top: 1rem;
           
           p{
                     margin-bottom: 0.5rem;
