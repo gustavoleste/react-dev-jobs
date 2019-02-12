@@ -18,7 +18,7 @@ const nav = props => (
                                                   <li onClick={props.close}><Link to='/vagas/backend-br'>Back-End</Link></li>
                                         </ul>
                               </LinksJobs>                              
-                              <h2><a href='https://github.com/' target='_blank' rel='external noopener noreferrer'>GitHub <FontAwesomeIcon icon={faExternalLinkAlt} size='xs'/></a></h2>                              
+                              <h2><a href='https://github.com/gustavoleste/vagas-dev' target='_blank' rel='external noopener noreferrer'>GitHub <FontAwesomeIcon icon={faExternalLinkAlt} size='xs'/></a></h2>                              
                     </LinksMenu>
           </Container>
 )

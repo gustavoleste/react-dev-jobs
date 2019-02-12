@@ -2,21 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faDesktop} from '@fortawesome/free-solid-svg-icons'
-import {faReact} from '@fortawesome/free-brands-svg-icons'
 
 const home = () => (
           <Container>
                     <Header>
                               <FontAwesomeIcon icon={faDesktop} size='5x' color='#fff'/>                              
                               <h1>DevJobs</h1>
-                              <p>Os maiores repositórios no GitHub para vagas de desenvolvedor, em um só lugar.</p>
+                              <p>As vagas dos três maiores repositórios para desenvolvedores do Brasil em um só lugar.</p>
                     </Header>
                     <Repos>
                               <h2>Repositórios:</h2>
                               <Logos>
                                         <ReactBrasil>
-                                                  <FontAwesomeIcon icon={faReact} color='#00D8FF' size='8x' />
-                                                  <p>React-Brasil</p>                                        
+                                                <img src='https://avatars2.githubusercontent.com/u/16929016?s=400&u=60f7754f634a169adc2027c05a359114d92c4a24&v=4' alt='logo React-Brasil'/>
+                                                  <p>react-brasil</p>                                        
                                         </ReactBrasil>
                                         <FrontEndBrasil>
                                                   <img src='https://raw.githubusercontent.com/frontendbr/brand/master/src/png/logo-600px--horizontal--color.png' alt='logo Front-End Brasil'/>                                        
@@ -88,6 +87,10 @@ const ReactBrasil = styled.div`
                     font-size: 2rem;
                     color: #00D8FF;
                     margin-bottom: 1rem;
+          }
+
+          img{
+                    width: 20rem;
           }
 
           @media (min-width: 1024px){

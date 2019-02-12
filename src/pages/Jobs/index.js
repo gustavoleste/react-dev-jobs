@@ -1,34 +1,49 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import styled from 'styled-components'
 import JobList from '../../components/JobsList'
 import api from '../../services/api'
+import Pagination from '../../components/Pagination'
 
 export default class Jobs extends Component{          
 
           state = {
                     jobs:[],
-                    isloading: false
+                    isloading: false,
+                    pages:{}
           }
           
           componentDidMount(){
-                    this.getJobs()
+                    this.getRepoJobs()
           }
 
-          componentDidUpdate(prevProps){
+          componentDidUpdate(prevProps, prevState){
+                    
                     if(this.props.match.params.id !== prevProps.match.params.id){
-                              this.getJobs()
+                              this.getRepoJobs()
+                    }
+
+                    if(this.state.pages.current !== prevState.pages.current){
+                              this.changePage()
                     }
           }
 
-          getJobs = async () => {
+          getRepoJobs = async () => {
                     try{
                               this.setState({
                                         isloading: true
                               })
                               const repo = this.props.match.params.id
                               const jobList = await api.get(`${repo}/vagas/issues`)
+                              const pagesNumber = this.totalPages(jobList.headers.link)
+                              const pages = {
+                                        prev: 0,
+                                        current: 1,
+                                        next: 2,
+                                        total: pagesNumber
+                              }
                               this.setState({
                                         jobs: jobList.data,
+                                        pages,
                                         isloading: false
                               })
                     }catch(error){
@@ -39,11 +54,69 @@ export default class Jobs extends Component{
                     }
           }
 
+          changePage = async () =>{
+                    try{
+                              this.setState({
+                                        isloading: true
+                              })
+                              const repo = this.props.match.params.id
+                              const page = this.state.pages.current
+                              const jobList = await api.get(`${repo}/vagas/issues?page=${page}`)
+                              this.setState({
+                                        jobs: jobList.data,
+                                        isloading: false
+                              })
+                    }catch(error){
+                              console.log(error)
+                    }
+          }
+
+          nextPage = () =>{
+                    const {current,next,total} = this.state.pages
+                    const pages = {
+                              prev: current,
+                              current: next,
+                              next: next+1,
+                              total
+                    }
+                    this.setState({
+                              pages
+                    })
+          }
+
+          prevPage = () =>{
+                    const {prev,current,total} = this.state.pages
+                    const pages = {
+                              prev: prev-1,
+                              current: prev,
+                              next: current,
+                              total
+                    }
+                    this.setState({
+                              pages
+                    })
+
+          }          
+
+          totalPages = link => {
+                    const indexOne = link.lastIndexOf('e=')
+                    const indexTwo = link.lastIndexOf('>')
+                    const pageNumber = Number(link.slice(indexOne+2,indexTwo))
+                    return pageNumber
+          }
+
           render(){
-                    const content = this.state.isloading ? <h1>Carregando...</h1> : <JobList jobs={this.state.jobs}/>;
+                    console.log(this.state.pages)
+                    const content = this.state.isloading ? <h1>Carregando...</h1> : <Fragment>
+                                                                                          <JobList jobs={this.state.jobs}/>
+                                                                                          <Pagination pages={this.state.pages}
+                                                                                                    next={this.nextPage}
+                                                                                                    prev={this.prevPage}
+                                                                                          />
+                                                                                </Fragment>;
                     return(
                               <Container>  
-                                        {content}                                                                                         
+                                        {content}                                                                                                                        
                               </Container>
                     )
           }
@@ -58,4 +131,5 @@ const Container = styled.main`
                     margin: 1rem;
           }
 `
+
 
